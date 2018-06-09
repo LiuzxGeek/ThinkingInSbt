@@ -68,6 +68,114 @@ public class Order {
         this.price = payment.price;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
+    }
+
+    public void setStation_aliais(String station_aliais) {
+        this.station_aliais = station_aliais;
+    }
+
+    public void setOut_trade_no(String out_trade_no) {
+        this.out_trade_no = out_trade_no;
+    }
+
+    public void setService_mode(int service_mode) {
+        this.service_mode = service_mode;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public void setLati(String lati) {
+        this.lati = lati;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setCoupon_unique(String coupon_unique) {
+        this.coupon_unique = coupon_unique;
+    }
+
+    public void setUse_coupon(boolean use_coupon) {
+        this.use_coupon = use_coupon;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getClient_id() {
+        return client_id;
+    }
+
+    public String getStation_aliais() {
+        return station_aliais;
+    }
+
+    public String getOut_trade_no() {
+        return out_trade_no;
+    }
+
+    public int getService_mode() {
+        return service_mode;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public String getLati() {
+        return lati;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public String getCoupon_unique() {
+        return coupon_unique;
+    }
+
+    public boolean isUse_coupon() {
+        return use_coupon;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public boolean isPayment_success() {
+        return payment_success;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
     public void setPayment_success(boolean payment_success) {
         this.payment_success = payment_success;
     }

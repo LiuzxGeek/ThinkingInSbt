@@ -7,5 +7,4 @@ package com.springboot.start.response;
  */
 public class BaseResponse {
     private String result;
-
 }

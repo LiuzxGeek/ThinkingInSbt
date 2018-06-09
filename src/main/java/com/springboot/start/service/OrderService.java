@@ -2,10 +2,12 @@ package com.springboot.start.service;
 
 import com.springboot.start.bean.Order;
 import com.springboot.start.repository.OrderRepository;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +26,10 @@ public class OrderService {
      * @param phone
      * @return
      */
-    public List<Order> getOrderByPhone(String phone, int page, int size) {
+    public List<Order> getOrderByPhone(int phone, int page, int size) {
+        List<Long> iterable = new ArrayList<>();
+        iterable.add(1l);
+//        return mOrderRepository.findAllById(iterable);
         return mOrderRepository.findOrderByPhone(phone, new PageRequest(page, size));
     }
 
@@ -36,6 +41,13 @@ public class OrderService {
      */
     public List<Order> getOrderByDevice(String id, int page, int size) {
         return mOrderRepository.findOrderByDevice(id, new PageRequest(page, size));
+    }
+
+    public Order insertOrder(String phone, String client_id) {
+        Order order = new Order();
+        order.setPhone(phone);
+        order.setClient_id(client_id);
+        return mOrderRepository.save(order);
     }
 
 }

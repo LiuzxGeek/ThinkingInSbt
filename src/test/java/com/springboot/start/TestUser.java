@@ -12,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.mockito.Mockito.when;
+
 /**
  * @Author liuxian
  * @Date 2018/6/6
@@ -32,7 +34,7 @@ public class TestUser {
         mockUser.setNickName("john");
         mockUser.setId(1L);
         mockUser.setGender("1");
-//        when(userService.findOne(1L)).thenReturn(mockUser);
+        when(userService.findOne(1L)).thenReturn(mockUser);
     }
 
     @Test

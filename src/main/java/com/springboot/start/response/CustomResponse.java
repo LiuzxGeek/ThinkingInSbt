@@ -19,4 +19,7 @@ public class CustomResponse<T> extends BaseResponse {
     public static CustomResponse<String> empty() {
         return new CustomResponse("暂无数据");
     }
+    public static CustomResponse<String> success() {
+        return new CustomResponse("成功操作");
+    }
 }
