@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @Author liuxian
@@ -30,8 +31,55 @@ public class OrderController {
      */
     @RequestMapping(value = "/order/phone", method = RequestMethod.GET)
     @ResponseBody
-    public CustomResponse getOrder(@RequestParam int phone, @RequestParam int page, @RequestParam int size) {
+    public CustomResponse getOrder(@RequestParam String phone, @RequestParam int page, @RequestParam int size) {
         List<Order> orderList = mOrderService.getOrderByPhone(phone, page, size);
+        if (orderList != null && orderList.size() > 0) {
+            return new CustomResponse(orderList);
+        }
+        return CustomResponse.empty();
+    }
+
+    /**
+     * 根据机器id查询订单
+     *
+     * @param client_id
+     * @return
+     */
+    @RequestMapping(value = "/order/device", method = RequestMethod.GET)
+    @ResponseBody
+    public CustomResponse getOrderByDevice(@RequestParam String client_id, @RequestParam int page, @RequestParam int size) {
+        List<Order> orderList = mOrderService.getOrderByDevice(client_id, page, size);
+        if (orderList != null && orderList.size() > 0) {
+            return new CustomResponse(orderList);
+        }
+        return CustomResponse.empty();
+    }
+
+    /**
+     * 根据id查询订单
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/order/id", method = RequestMethod.GET)
+    @ResponseBody
+    public CustomResponse getOrderById(@RequestParam long id) {
+        List<Order> orderList = mOrderService.getOrderById(id);
+        if (orderList != null) {
+            return new CustomResponse(orderList);
+        }
+        return CustomResponse.empty();
+    }
+
+    /**
+     * 所有订单
+     *
+     * @return
+     */
+    @RequestMapping(value = "/order/all", method = RequestMethod.GET)
+    @ResponseBody
+    public CustomResponse getAllOrder() {
+        List<Order> orderList = mOrderService.getAllOrder();
         if (orderList != null) {
             return new CustomResponse(orderList);
         }
@@ -40,9 +88,27 @@ public class OrderController {
 
     @PostMapping(value = "/order/insert")
     @ResponseBody
-    public CustomResponse insertOrder(@RequestParam String phone, @RequestParam String client_id) {
-        Order order = mOrderService.insertOrder(phone, client_id);
-        if (order != null && order.getId() != 0) {
+    public CustomResponse insertOrder(@RequestParam String phone, @RequestParam String client_id, int payment_success, double price, int service_mode, long time, int use_coupon) {
+        Order order = mOrderService.insertOrder(phone, client_id, payment_success, price, service_mode, time, use_coupon);
+        if (order != null) {
+            return CustomResponse.success();
+        }
+        return CustomResponse.empty();
+    }
+
+    @PostMapping(value = "/order/update")
+    @ResponseBody
+    public CustomResponse updateOrder(@RequestParam long id, @RequestParam String client_id, @RequestParam String phone) {
+        if (mOrderService.updateOrder(id, phone, client_id) != null) {
+            return CustomResponse.success();
+        }
+        return CustomResponse.empty();
+    }
+
+    @PostMapping(value = "/order/del")
+    @ResponseBody
+    public CustomResponse delOrder(@RequestParam long id) {
+        if (mOrderService.delOrder(id)) {
             return CustomResponse.success();
         }
         return CustomResponse.empty();

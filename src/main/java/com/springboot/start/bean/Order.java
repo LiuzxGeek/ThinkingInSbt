@@ -29,7 +29,7 @@ public class Order {
     private int service_mode;
 
     // unix时间
-    private long time;
+    private long occur_time;
 
     // 维度
     private String lati;
@@ -89,7 +89,7 @@ public class Order {
     }
 
     public void setTime(long time) {
-        this.time = time;
+        this.occur_time = time;
     }
 
     public void setLati(String lati) {
@@ -141,7 +141,7 @@ public class Order {
     }
 
     public long getTime() {
-        return time;
+        return occur_time;
     }
 
     public String getLati() {
